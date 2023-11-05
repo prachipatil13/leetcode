@@ -1,26 +1,24 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        
-        if(s.length()!=t.length()){
+        int count[128]={0};
+        if(s.size()!=t.size())
             return false;
-        }
-        
-        vector<int>freq(128,-1);
         
         for(int i=0;i<s.size();i++){
-            freq[s[i]]++;
-            freq[t[i]]--;
+           count[s[i]]++;
+            count[t[i]]--;
         }
         
         
-        for(int i=0;i<freq.size();i++){
-           if(freq[i]!=-1){
-               return false;
-           }
+        
+        
+        for(int i=0;i<128;i++){
+            if(count[i]!=0){
+                return false;
+            }
         }
         
         return true;
-        
     }
 };
