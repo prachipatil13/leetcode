@@ -1,24 +1,21 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
-     int count[26] = {0};
-        int i = 0;
-
+      unordered_map<char,int>mpp;  
+      int count=s.size();
+        for(int i=0;i<s.size();i++){
+           mpp[s[i]]++;
+           
+        }
         
-        while (i < s.size()) {
-            count[t[i] - 'a']++;
-            count[s[i] - 'a']--;
-            i++;
+        for(int i=0;i<s.size();i++){
+           if(mpp[t[i]]!=0){
+               mpp[t[i]]--;
+               count--;
+           }
+           
         }
-
-        int ans = 0;
-        i = 0;
-
-        while (i < 26) {
-            ans += max(0, count[i]);
-            i++;
-        }
-
-        return ans;
+        
+        return count;
     }
 };
